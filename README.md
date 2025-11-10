@@ -6,77 +6,68 @@ To implement Erosion and Dilation using Python and OpenCV.
 2. OpenCV
 ## Algorithm:
 ### Step1:
-Create a black image of size 100x600 pixels.
+Create a blank image.
 
 ### Step2:
+Create a structuring element (5x5 rectangular)
 
-Use a specified font to write the word "Lifestyle" on the image at a defined position
 ### Step3:
-
-Show the image containing the text without axis labels.
+Erode the image.
 
 ### Step4:
-Define a structuring element for morphological operations (e.g., a cross-shaped kernel)
+Dilate the image.
 
 ### Step5:
-Apply erosion to the image using the defined structuring element to reduce the size of white regions.
-### step 6:
+End the program.
 
- Apply dilation to the original image using the same structuring element to increase the size of white regions.
+ 
 ## Program:
 
-# Name: AHALYA S
-# Regno: 212223230006
-
-```
-# Import the necessary packages
-import numpy as np
+``` Python
 import cv2
-import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import pyplot as plt
+# Load the image
+img1=np.zeros((100,500),dtype='uint8')
+font=cv2.FONT_HERSHEY_COMPLEX_SMALL
 
-
-# Create the Text using cv2.putText
-img = np.zeros((100, 600, 3), dtype='uint8')  # Black background (RGB: 0, 0, 0)
-font = cv2.FONT_HERSHEY_COMPLEX
-text_color = (255, 255, 255)  # White text (RGB: 255, 255, 255)
-cv2.putText(img, 'Pavithra S', (60, 70), font, 2, text_color, 5, cv2.LINE_AA)
-plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.axis('off')
-plt.show()
+# Create the text using cv2.putText
+cv2.putText(img1,'AHALYA' ,(5,70),font,4,(255),2,cv2.LINE_AA)
 
 
 # Create the structuring element
-kernel = np.ones((5,5),np.uint8)
-kernel1 = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
-cv2.erode(img,kernel)
-
-
-# Erode the image
-img_erode = cv2.erode(img,kernel1)
-plt.imshow(img_erode)
-plt.axis('off')
-
+kernel1=cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
 
 # Dilate the image
-img_dilate = cv2.dilate(img,kernel1)
-plt.imshow(img_dilate)
-plt.axis('off')
+img_dilate=cv2.dilate(img1,kernel1)
+img_erode=cv2.erode(img1,kernel1)
+
+# Display the results
+plt.figure(figsize=(12, 5))
+plt.subplot(1,3,1)
+plt.imshow(img1,cmap='gray')
+plt.subplot(1,3,2)
+plt.imshow(img_dilate,cmap='gray')
+plt.subplot(1,3,3)
+plt.imshow(img_erode,cmap='gray')
 
 ```
 ## Output:
 
 ### Display the input Image
-<img width="459" height="84" alt="Screenshot 2025-11-02 210651" src="https://github.com/user-attachments/assets/49149362-1b85-45b2-986b-4ee2813b2cc4" />
+<img width="438" height="142" alt="image" src="https://github.com/user-attachments/assets/7ad4077b-1a50-4d8a-8a1c-d775567f2d14" />
 
 
 ### Display the Eroded Image
-<img width="534" height="114" alt="Screenshot 2025-11-02 210659" src="https://github.com/user-attachments/assets/8f1f97a4-9dff-4681-8426-df50be3758b0" />
+
+<img width="417" height="140" alt="image" src="https://github.com/user-attachments/assets/794e47c8-6f15-4dc7-9c3d-e8c8ccc22e2a" />
 
 
 
 ### Display the Dilated Image
+<img width="415" height="155" alt="image" src="https://github.com/user-attachments/assets/c2fa55a4-a1be-4674-945c-17fee72cdf3e" />
 
-<img width="490" height="112" alt="Screenshot 2025-11-02 210705" src="https://github.com/user-attachments/assets/2341da5f-0a87-4f1f-a8c6-edbc643d094b" />
+
 
 ## Result
 Thus the generated text image is eroded and dilated using python and OpenCV.
